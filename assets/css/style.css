@@ -1,0 +1,21 @@
+body {
+    background-image: url('../images/vader.jpg');
+    color: #feda4a;
+    font-family: 'Pathway-Gothic One', sans-serif;
+}
+
+.name {
+    margin-top: 20px;
+    text-align: center;
+    border: #feda4a 2px solid;
+    -webkit-text-stroke: 1px black;
+}
+
+.question {
+    border: #feda4a 2px solid;
+    padding: 20px;
+}
+
+#q, #timeLeft {
+    text-align: center;
+}

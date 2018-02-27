@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Star Wars Trivia</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="name col-md-6">
+                <h1>Star Wars Trivia Game</h1>
+            </div>
+        </div>
+
+        <br><br>
+
+        <div class="row justify-content-center instructions">
+            
+            <div class="col-md-5">
+                <p>You will have 20 seconds to answer each question. The correct answer will be displayed when you guess right or wrong, 
+                    or when the timer runs out. After 5 seconds, the next question will be displayed. Game will begin in 
+                    <span id="start_timer">10</span> seconds. May the force be with you!</p>
+            </div> 
+        </div>
+    
+        <div class="row question_box">
+            <div class="question col-md-9">
+                <p id="q">???????QUESTION???????</p>
+                <div class="col-3 float-left"><p>a) <span id="option1"></span></p></div>
+                <div class="col-3"><p>b) <span id="option2"></span></p></div>
+                <div class="col-3"><p>c) <span id="option3"></span></p></div>
+                <div class="col-3"><p>d) <span id="option4"></span></p></div>
+                <div id="timeLeft"><p>Time Left: <span id="countdown"></span></p></div>
+            </div>
+
+        </div>
+
+        <div class="answer">
+            <p><span id="correctAnswer"></span></p>
+            <img id="answer-image">
+        </div>
+
+    </div>
+    
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+</body>
+</html>
