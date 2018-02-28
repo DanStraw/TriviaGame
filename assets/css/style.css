@@ -19,3 +19,10 @@ body {
 #q, #timeLeft {
     text-align: center;
 }
+
+button {
+    background-color: black;
+    border:  #feda4a 2px solid;
+    color: #feda4a;
+    font-family: 'Pathway-Gothic One', sans-serif;
+}

@@ -24,18 +24,18 @@
             
             <div class="col-md-5">
                 <p>You will have 20 seconds to answer each question. The correct answer will be displayed when you guess right or wrong, 
-                    or when the timer runs out. After 5 seconds, the next question will be displayed. Game will begin in 
-                    <span id="start_timer">10</span> seconds. May the force be with you!</p>
+                    or when the timer runs out. After 5 seconds, the next question will be displayed.
+                    <button id="btn btn-primary start-button">Let's Play</button>
             </div> 
         </div>
     
         <div class="row question_box">
             <div class="question col-md-9">
                 <p id="q">???????QUESTION???????</p>
-                <div class="col-3 options"><p>a) <span id="option0"></span></p></div>
-                <div class="col-3 options"><p>b) <span id="option1"></span></p></div>
-                <div class="col-3 options"><p>c) <span id="option2"></span></p></div>
-                <div class="col-3 options"><p>d) <span id="option3"></span></p></div>
+                <div class="col-3"><p>a) <span class="options" id="option0"></span></p></div>
+                <div class="col-3"><p>b) <span class="options" id="option1"></span></p></div>
+                <div class="col-3"><p>c) <span class="options" id="option2"></span></p></div>
+                <div class="col-3"><p>d) <span class="options" id="option3"></span></p></div>
                 <div id="timeLeft"><p>Time Left: <span id="countdown"></span></p></div>
             </div>
 
@@ -44,6 +44,12 @@
         <div class="answer">
             <p><span id="correctAnswer"></span></p>
             <img id="answer-image">
+        </div>
+
+        <div class="results">
+            <span id="right_answers"></span>
+            <span id="wrong_answers"></span>
+            <span id="percentage"></span>
         </div>
 
     </div>
