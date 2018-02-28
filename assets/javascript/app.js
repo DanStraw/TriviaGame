@@ -2,6 +2,35 @@
 window.onload = function() {
     $(".question_box").hide();
     
+    
+    var q1 = {
+        question: "Who did Han Solo shoot in the Mos Eisley Cantina?",
+        options: ["Greedo", "Kit Fisto", "Lobot", "Fredo"],
+        correctAnswer: "Greedo",
+        answerPic: src="../assets/images/greedo.jpg",
+    }
+
+    var q2 = {
+        question: "What is the name of Bobba Fett's ship?",
+        options: ["Millenium Falcon", "Executioner", "Slave I", "Tie Fighter"],
+        correctAnswer: "Slave I",
+        answerPic: "",
+    }
+        
+    var q3 = {
+        question: "What is the name of the Wookie Planet?",
+        options: ["Kashyyyk", "Tatooine", "Arrakis", "Mustafar"],
+        correctAnswer: "Kashyyyk",
+        answerPic: "",
+    }
+
+    var q4 = {
+        question: "In 'Rogue One', from which planet were the Death Star plans stolen?",
+        options: ["Naboo", "Yavin", "Ahch-To", "Scarif"],
+        correctAnswer: "Scarif",
+        answerPic: "",
+    }
+    var questionsArray = [q1, q2, q3, q4];
     var intervalId;
     var timeLeft = 5;
     $("#start_timer").text(timeLeft);
@@ -33,39 +62,10 @@ window.onload = function() {
         $("#countdown").text(timeLeft);
         // console.log(typeof questionsArray);
         
-
-        var q1 = {
-            question: "Who did Han Solo shoot in the Mos Eisley Cantina?",
-            options: ["Greedo", "Kit Fisto", "Lobot", "Fredo"],
-            correctAnswer: "Greedo",
-            answerPic: "../assets/images/greedo.jpg",
-        }
-
-        var q2 = {
-            question: "What is the name of Bobba Fett's ship?",
-            options: ["Millenium Falcon", "Executioner", "Slave I", "Tie Fighter"],
-            correctAnswer: "Slave I",
-            answerPic: "",
-        }
-            
-        var q3 = {
-            question: "What is the name of the Wookie Planet?",
-            options: ["Kashyyyk", "Tatooine", "Arrakis", "Mustafar"],
-            correctAnswer: "Kashyyyk",
-            answerPic: "",
-        }
-
-        var q4 = {
-            question: "In 'Rogue One', from which planet were the Death Star plans stolen?",
-            options: ["Naboo", "Yavin", "Ahch-To", "Scarif"],
-            correctAnswer: "Scarif",
-            answerPic: "",
-        }
-
-        var questionsArray = [q1, q2, q3, q4];
+        
         var randomNumber = Math.floor(Math.random() * questionsArray.length);
         var selectedQuestion = questionsArray[randomNumber];
-        questionsArray.pop(selectedQuestion);
+        questionsArray.splice(randomNumber, 1);
         
         
         console.log(questionsArray);
