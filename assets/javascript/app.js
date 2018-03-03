@@ -9,7 +9,6 @@ window.onload = function() {
     var userChoice;
     var rightAnswers = 0;
     var wrongAnswers = 0;
-    var randomNumber;
     var questionIndex = 0;
     var questionShowing = false;
     var answerShowing = false;
