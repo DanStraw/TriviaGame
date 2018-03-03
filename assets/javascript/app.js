@@ -145,7 +145,7 @@ window.onload = function() {
     function showAnswer() {
         questionShowing = false;
         answerShowing = true;
-        timeLeft = 1;
+        timeLeft = 5;
         $(".answer").show();
         $(".question_box").hide();
         //if correct answer chosen, add one to var correctAnswers, display correct answer
