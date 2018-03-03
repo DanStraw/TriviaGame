@@ -152,12 +152,12 @@ window.onload = function() {
         if (userChoice === questions[questionIndex].correctAnswer) {
             rightAnswers++;
             $("#correctAnswer").text("Correct! The answer is " + questions[questionIndex].correctAnswer + "!");
-            $("#image").html("<img src=assets/images/" + questions[questionIndex].image + " height=400px width=400px>");
+            $("#image").html("<img src=assets/images/" + questions[questionIndex].image + " height=350px width=350px>");
         //if wrong answer chosen (or time runs out), add one to var wrongAnswers, display correct answer
         } else {
             wrongAnswers++;
             $("#correctAnswer").text("Incorrect! The answer is " + questions[questionIndex].correctAnswer);
-            $("#image").html("<img src=assets/images/" + questions[questionIndex].image + " height=400px width=400px>");
+            $("#image").html("<img src=assets/images/" + questions[questionIndex].image + " height=350px width=350px>");
         }
         questionIndex++;
     }
@@ -171,7 +171,7 @@ window.onload = function() {
         $(".replay").show();
         $(".rightAnswers").text(rightAnswers);
         $(".wrongAnswers").text(wrongAnswers);
-        $(".percentage").text(percentage + "%");
+        $(".percentage").text(percentage.toFixed(2) + "%");
     }
     //click replay button to reset/play again
     $(".replay").on("click", function() {
