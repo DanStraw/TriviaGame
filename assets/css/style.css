@@ -11,9 +11,10 @@ body {
     -webkit-text-stroke: 1px black;
 }
 
-.question {
+.question, .answer, .results {
     border: #feda4a 2px solid;
     padding: 20px;
+    height: auto;
 }
 
 #q, #timeLeft {
@@ -25,4 +26,12 @@ button {
     border:  #feda4a 2px solid;
     color: #feda4a;
     font-family: 'Pathway-Gothic One', sans-serif;
+}
+
+.question {
+    text-align: left;
+}
+
+.answer, .results {
+    text-align: center;
 }

@@ -7,32 +7,36 @@
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>Star Wars Trivia</title>
 </head>
 <body>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="name col-md-6">
+            <div class="col-md-10 name">
                 <h1>Star Wars Trivia Game</h1>
             </div>
         </div>
 
         <br><br>
 
-        <div class="row justify-content-center instructions">
+        <div class="row instructions justify-content-center">
             
             <div class="col-md-5">
-                <p>You will have 20 seconds to answer each question. The correct answer will be displayed when you guess right or wrong, 
-                    or when the timer runs out. After 5 seconds, the next question will be displayed.
-                    <button id="btn btn-primary start-button">Let's Play</button>
+                <p>You will have 15 seconds to answer each question. Click on the option you think is correct. The correct answer will be displayed when you guess right or wrong, 
+                    or when the timer runs out. After 5 seconds, the next question will be displayed.</p>
+                <div id="start">
+                    <button id="btn btn-primary start">Let's Play</button>
+                </div>
             </div> 
+            
+            
         </div>
     
-        <div class="row question_box">
-            <div class="question col-md-9">
-                <p id="q">???????QUESTION???????</p>
-                <div class="col-3"><p>a) <span class="options" id="option0"></span></p></div>
+        <div class="row question_box justify-content-center">
+            <div class="question col-md-10">
+                <p id="q"></p>
+                <div class="col-3"><p>a) <span class="options" id="option0" prop="disabled"></span></p></div>
                 <div class="col-3"><p>b) <span class="options" id="option1"></span></p></div>
                 <div class="col-3"><p>c) <span class="options" id="option2"></span></p></div>
                 <div class="col-3"><p>d) <span class="options" id="option3"></span></p></div>
@@ -41,16 +45,38 @@
 
         </div>
 
-        <div class="answer">
-            <p><span id="correctAnswer"></span></p>
-            <img id="answer-image">
+        <div class="row justify-content-center">
+            <div class="col-md-10 answer">
+                <p><span id="correctAnswer"></span></p>
+                <div id="image"></div>
+            </div>
         </div>
 
-        <div class="results">
-            <span id="right_answers"></span>
-            <span id="wrong_answers"></span>
-            <span id="percentage"></span>
+        <div class="row justify-content-center">
+            <div class="col-md-10 ">
+                <div class=" results row justify-content-center" id="stats">
+                    
+                    <div class ="col">
+                        <p>Right Answers: <span class="rightAnswers"></span></p>
+                    </div>
+                    <div class ="col">
+                        <p>Wrong Answers: <span class="wrongAnswers"></span></p>
+                    </div>
+            
+                    <div class ="col">
+                        <p>Percentage: <span class="percentage"></span></p>
+                    </div>  
+                </div>
+            </div>
         </div>
+        <br>
+
+        <div class="row replay justify-content-center">
+            <button id="replay_button btn btn-primary">Play Again</button>
+        </div> 
+            
+        
+        
 
     </div>
     

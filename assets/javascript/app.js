@@ -1,145 +1,180 @@
 window.onload = function() {
-
+    $(".results").hide();
+    $(".replay").hide();
+    $(".question_box").hide();
+    $(".answer").hide();
     var intervalId;
     var timeLeft;
-    var correctAnswers = 0;
+    var clockRunning = false;
+    var userChoice;
+    var rightAnswers = 0;
     var wrongAnswers = 0;
-    var gotRightAnswer;
-    var displayAnswer;
     var randomNumber;
-    var selectedQuestion;
-    var q1 = {
-        question: "Who did Han Solo shoot in the Mos Eisley Cantina?",
-        options: ["Greedo", "Kit Fisto", "Lobot", "Fredo"],
-        correctAnswer: "Greedo",
-        // answerPic: "../assets/images/greedo.jpg",
-    }
-    var q2 = {
+    var questionIndex = 0;
+    var questionShowing = false;
+    var answerShowing = false;
+    var gotRightAnswer;
+    var questions = [{
+        question : "Who did Han Solo shoot in the Mos Eisley Cantina?",
+        options : ["Greedo", "Kit Fisto", "Lobot", "Fredo"],
+        correctAnswer : "Greedo",
+        image: "greedo.jpg",
+        },
+        {
         question: "What is the name of Bobba Fett's ship?",
         options: ["Millenium Falcon", "Executioner", "Slave I", "Tie Fighter"],
         correctAnswer: "Slave I",
-        answerPic: "",
-    }   
-    var q3 = {
+        image: "slave-1.jpeg",
+        },   
+        {
         question: "What is the name of the Wookie Planet?",
         options: ["Kashyyyk", "Tatooine", "Arrakis", "Mustafar"],
         correctAnswer: "Kashyyyk",
-        answerPic: "",
-    }
-    var q4 = {
+        image: "kashyyyk.jpeg",
+        },
+        {
         question: "In 'Rogue One', from which planet were the Death Star plans stolen?",
         options: ["Naboo", "Yavin", "Ahch-To", "Scarif"],
         correctAnswer: "Scarif",
-        // answerPic: "",
+        image: "scarif.jpg",
+        },
+        {
+        question : "Who is the first Ewok Leia meets?",
+        options : ["Watto", "Wicket", "Wedge", "Wyclef"],
+        correctAnswer : "Wicket",
+        image: "wicket.png",
+        },
+        {
+        question: "What is Emporer Palpatine's first name?",
+        options: ["Siev", "Shiv", "Sheev", "Steve"],
+        correctAnswer: "Sheev",
+        image: "palpatine.jpg",
+        },   
+        {
+        question: "Who tries to sell Obi-Wan deathsticks?",
+        options: ["Elan Sleazebaggano", "Salacious Crumb", "Ponda Baba", "Bib Fortuna"],
+        correctAnswer: "Elan Sleazebaggano",
+        image: "elan.jpg",
+        },
+        {
+        question: "Who is the Rancor's caretaker?",
+        options: ["Max Rebo", "Unkar Plutt", "Nala Se", "Malakili"],
+        correctAnswer: "Malakili",
+        image: "malakili.png",
+        },
+        {
+        question : "Who does not die in the Battle of Yavin?",
+        options : ["Wedge Antilles", "Biggs Darklighter", "Garvin Dreis", "Porkins"],
+        correctAnswer : "Wedge Antilles",
+        image: "wedge.jpg",
+        },
+        {
+        question: "Approximately how many forms of communication is C-3PO fluent in?",
+        options: ["over 1 million", "over 4 million", "over 6 million", "over 10 million"],
+        correctAnswer: "over 6 million",
+        image: "3po.jpeg",
+        },   
+        {
+        question: "What is Leia's adoptive last name?",
+        options: ["Amidala", "Organa", "Skywalker", "Solo"],
+        correctAnswer: "Organa",
+        image: "leia.jpg",
+        },
+        {
+        question: "What are they betting on when Lando looses the Millennium Falcon to Han?",
+        options: ["Sabaac", "Pod Racing", "A drinking game", "Dejarik"],
+        correctAnswer: "Sabaac",
+        image: "lando.jpeg",
+        }];
+    //resets variables and appearance for start of new game
+    function reset() {
+        $(".results").hide();
+        $(".replay").hide();
+        questionIndex = 0;
+        rightAnswers = 0;
+        wrongAnswers = 0;
+        showQuestion();
     }
-    var questionsArray = [q1, q2, q3, q4];
 
-    
-//on page load, instructions are displayed. They will stay on the screen for 10 seconds.
-    
-    $(".question_box").hide();
-    startGame();
-
-     //click start button to trigger 1st question  
-    function startGame() {
-        $("button").on("click", function() {
-            console.log("play");
-            newQuestion();
-            $("button").hide();
-            $(".instructions").hide();
-        })
-    }
-
-    function questionCountdown() {
-        timeLeft--;
-        $("#countdown").text(timeLeft);
-        // console.log(timeLeft);
-        if (timeLeft === 0) {
-            clearInterval(intervalId);
-            $("#timeLeft").hide();
-            showAnswer();
-        }
-    };
-
-    function answerCountdown() {
-        timeLeft--;
-        // console.log(timeLeft);
-        if (timeLeft === 0) {
-            clearInterval(intervalId);
-            $("#timeLeft").show();
-            newQuestion();
-        }
-    };
-
-    //countdown of 20 seconds for each question. Player can choose from 4 options
-    function newQuestion() {
+    $("button", "#start").on("click", function() {
+        reset();
+    })
+    //show the question and all the answers. Display decrementing time left to answer question
+    function showQuestion() {
+        timeLeft = 15;
+        questionShowing = true;
+        answerShowing = false;
+        // console.log(questions.length);
+        $(".instructions").hide();
+        $(".answer").hide();
         $(".question_box").show();
-        timeLeft = 12; //CHANGE THIS BACK TO 20
-        intervalId = setInterval(questionCountdown, 1000);
+        $("#q").text(questions[questionIndex].question);
+        $("#option0").html(questions[questionIndex].options[0]);
+        $("#option1").html(questions[questionIndex].options[1]);
+        $("#option2").html(questions[questionIndex].options[2]);
+        $("#option3").html(questions[questionIndex].options[3]);
+        if (!clockRunning) {
+            intervalId = setInterval(countdown, 1000);
+            clockRunning = true;
+            $("#countdown").text(timeLeft);    
+        } 
+    }
+    //function to decrement the time left. Different if statements to determine what to do next when time expires, depending on where we are in the game
+    function countdown() {
+        timeLeft--;
         $("#countdown").text(timeLeft);
-
-        randomNumber = Math.floor(Math.random() * questionsArray.length);
-        selectedQuestion = questionsArray[randomNumber];
-        // displayAnswer = (selectedQuestion.correctAnswer);
-        console.log(selectedQuestion);
-
-        $("#q").text(selectedQuestion.question);
-        $("#option0").text(selectedQuestion.options[0]);
-        $("#option1").text(selectedQuestion.options[1]);
-        $("#option2").text(selectedQuestion.options[2]);
-        $("#option3").text(selectedQuestion.options[3]); 
-        // questionsArray.splice(randomNumber, 1);
-        if (questionsArray.length = 0) {
-            endGame();
-        }
-    
-        $(".options").click(function() {
-            // console.log(selectedQuestion.correctAnswer);
-            var userChoice = $(this).text();
-            console.log(userChoice);
-            clearInterval(intervalId);
-            $(".question_box").hide();
-            if (userChoice === selectedQuestion.correctAnswer) {
-                console.log("true");
-                correctAnswers++;
-                gotRightAnswer = true;
-            } else {
-                wrongAnswers++;
+        if (((rightAnswers + wrongAnswers) === questions.length) && (timeLeft < 1)){
+            clockRunning = false;
+            showResults();
+        } else if (questionShowing) {
+            if (timeLeft === 0) {
+                showAnswer();
             }
-            
-            console.log(questionsArray.length);
-            showAnswer();
-
-        })
+        } else if (answerShowing) {
+            if (timeLeft === 0) {
+                showQuestion();
+            }
+        }  
     }
-   
-    
+    //assign the text in the options div selected to the variable userChoice
+    $(".options").on("click", function() {
+        userChoice = $(this).text();
+        showAnswer();
+    });
+    //show answer with corresponding picture. Displays different text depending if answer was right or wrong. Shows for 5 seconds
     function showAnswer() {
-        timeLeft = 5;
-        intervalId = setInterval(answerCountdown, 1000);
-        console.log(timeLeft);
-        $(".question_box").hide();
+        questionShowing = false;
+        answerShowing = true;
+        timeLeft = 1;
         $(".answer").show();
-        if (gotRightAnswer) {
-            $("#correctAnswer").text("Correct! The Answer is" + displayAnswer);
+        $(".question_box").hide();
+        //if correct answer chosen, add one to var correctAnswers, display correct answer
+        if (userChoice === questions[questionIndex].correctAnswer) {
+            rightAnswers++;
+            $("#correctAnswer").text("Correct! The answer is " + questions[questionIndex].correctAnswer + "!");
+            $("#image").html("<img src=assets/images/" + questions[questionIndex].image + " height=400px width=400px>");
+        //if wrong answer chosen (or time runs out), add one to var wrongAnswers, display correct answer
         } else {
-            $("#correctAnswer").text("Incorrect! The Answer is" + displayAnswer);
+            wrongAnswers++;
+            $("#correctAnswer").text("Incorrect! The answer is " + questions[questionIndex].correctAnswer);
+            $("#image").html("<img src=assets/images/" + questions[questionIndex].image + " height=400px width=400px>");
         }
+        questionIndex++;
     }
-
-    function endGame() {
-        $("#right_answers").text(correctAnswers);
-        $("#wrong_answers").text(wrongAnswers);
-        $("#percentage").val(correctAnswers/(correctAnswers + wrongAnswers));
+    //After all questions are answered and last answer displays, show summary
+    function showResults() {
         clearInterval(intervalId);
-    }    
+        var percentage = (rightAnswers/(rightAnswers + wrongAnswers)) * 100;
+        $(".answer").hide();
+        $(".question_box").hide();
+        $(".results").show();
+        $(".replay").show();
+        $(".rightAnswers").text(rightAnswers);
+        $(".wrongAnswers").text(wrongAnswers);
+        $(".percentage").text(percentage + "%");
+    }
+    //click replay button to reset/play again
+    $(".replay").on("click", function() {
+        reset();
+    })
 }
-
-
-
-
-//if correct answer chosen, add one to var correctAnswers, display correct answer, and start 5 second countdown to start of next question.
-
-//if wrong answer chosen, add one to var wrongAnswers, display correct answer, and start 5 second countdown to start of next question.
-
-//if time runs out on a question, do the same as wrong answers, but also add 1 to var unAnswered
