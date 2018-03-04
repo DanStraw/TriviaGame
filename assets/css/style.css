@@ -35,3 +35,9 @@ button {
 .answer, .results {
     text-align: center;
 }
+
+@media screen and (max-width: 980px) {
+    body {
+        background-image: url('../images/vader_small.png');
+    }
+}
