@@ -176,4 +176,17 @@ window.onload = function() {
     $(".replay").on("click", function() {
         reset();
     })
+
+    $('.options').bind('mouseover', function() {
+        var backgroundColor  = $(this).css("background-color");
+        var color = $(this).css("color");
+        $(this).css("background", "#feda4a");
+        $(this).css('color', '#0d4069');
+
+        console.log('yellow');
+        $(this).bind("mouseout", function(){
+            $(this).css('background-color', backgroundColor);
+            $(this).css('color', color);
+        })
+    })
 }

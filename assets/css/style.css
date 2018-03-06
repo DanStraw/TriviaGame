@@ -12,7 +12,7 @@ body {
 }
 
 .question, .answer, .results {
-    border: #feda4a 2px solid;
+    border: #0d4069 2px solid;
     padding: 20px;
     height: auto;
 }
